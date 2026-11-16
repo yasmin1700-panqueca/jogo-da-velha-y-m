@@ -1,0 +1,435 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(circle at center, #6b0909 0%, #b6233b 70%);
+
+    color: white;
+
+    overflow: hidden;
+}
+
+
+/* =========================
+   TELAS
+========================= */
+
+.screen {
+    display: none;
+
+    width: 100%;
+    height: 100vh;
+}
+
+.screen.active {
+    display: flex;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+#menu,
+#difficultyMenu {
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-container {
+    width: min(90%, 450px);
+
+    text-align: center;
+
+    padding: 40px 25px;
+
+    background: rgba(255, 182, 134, 0.85);
+
+    border: 2px solid #f18e8e;
+
+    box-shadow:
+        0 0 40px rgba(0, 0, 0, 0.7);
+}
+
+.menu-container h1 {
+    font-size: clamp(32px, 8vw, 58px);
+
+    letter-spacing: 5px;
+
+    margin-bottom: 45px;
+
+    text-shadow:
+        0 0 15px rgba(255, 255, 255, 0.15);
+}
+
+.menu-buttons {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+button {
+    font-family: inherit;
+
+    cursor: pointer;
+
+    border: none;
+
+    color: white;
+
+    background: #191919;
+
+    transition:
+        transform 0.15s,
+        background 0.15s,
+        box-shadow 0.15s;
+}
+
+.menu-buttons button {
+    padding: 17px 20px;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    letter-spacing: 2px;
+
+    border: 1px solid #444;
+}
+
+.menu-buttons button:hover {
+    background: #292929;
+
+    transform: scale(1.03);
+
+    box-shadow:
+        0 0 20px rgba(255, 255, 255, 0.08);
+}
+
+.back-button {
+    margin-top: 25px;
+
+    padding: 10px 20px;
+
+    color: #aaa;
+
+    background: transparent;
+}
+
+.back-button:hover {
+    color: white;
+}
+
+
+/* =========================
+   JOGO
+========================= */
+
+#game {
+    position: relative;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* =========================
+   BARRA SUPERIOR
+========================= */
+
+.top-bar {
+    position: absolute;
+
+    top: 20px;
+    left: 25px;
+    right: 25px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+#gameMode {
+    color: #aaa;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+#btnMenu {
+    padding: 8px 16px;
+
+    border: 1px solid #444;
+
+    background: #151515;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+}
+
+#btnMenu:hover {
+    background: #292929;
+}
+
+
+/* =========================
+   ÁREA DO JOGO
+========================= */
+
+.game-container {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 25px;
+}
+
+#turnText {
+    font-size: 20px;
+
+    letter-spacing: 3px;
+
+    text-align: center;
+
+    color: #ddd;
+}
+
+
+/* =========================
+   TABULEIRO
+========================= */
+
+#board {
+    width: min(80vw, 420px);
+
+    aspect-ratio: 1 / 1;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+
+    gap: 8px;
+}
+
+.cell {
+    min-width: 0;
+    min-height: 0;
+
+    border: 2px solid #444;
+
+    background: #111;
+
+    font-size: clamp(45px, 15vw, 85px);
+
+    font-weight: bold;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
+}
+
+.cell:hover:not(.filled) {
+    background: #1d1d1d;
+}
+
+.cell.filled {
+    cursor: default;
+}
+
+.cell.x {
+    color: #e6e6e6;
+
+    text-shadow:
+        0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.cell.o {
+    color: #999;
+
+    text-shadow:
+        0 0 15px rgba(255, 255, 255, 0.25);
+}
+
+.cell.winner {
+    background: #292929;
+
+    border-color: white;
+
+    animation: winnerPulse 0.8s infinite alternate;
+}
+
+@keyframes winnerPulse {
+    from {
+        box-shadow: 0 0 5px rgba(255,255,255,0.15);
+    }
+
+    to {
+        box-shadow: 0 0 25px rgba(255,255,255,0.35);
+    }
+}
+
+
+/* =========================
+   PLACAR
+========================= */
+
+.scoreboard {
+    position: absolute;
+
+    bottom: 20px;
+    left: 25px;
+
+    display: flex;
+
+    gap: 25px;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    padding: 10px 15px;
+
+    border-left: 3px solid #555;
+}
+
+.scoreboard div {
+    display: flex;
+
+    gap: 8px;
+
+    align-items: center;
+}
+
+.player-x {
+    color: white;
+}
+
+.player-o {
+    color: #999;
+}
+
+
+/* =========================
+   RESULTADO
+========================= */
+
+#resultOverlay {
+    position: absolute;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    backdrop-filter: blur(4px);
+}
+
+#resultOverlay.show {
+    display: flex;
+}
+
+.result-box {
+    width: min(90%, 400px);
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    background: #111;
+
+    border: 2px solid #444;
+
+    box-shadow:
+        0 0 50px rgba(0, 0, 0, 0.8);
+}
+
+.result-box h2 {
+    margin-bottom: 25px;
+
+    font-size: 25px;
+
+    letter-spacing: 2px;
+}
+
+.result-box button {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 10px;
+
+    border: 1px solid #444;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.result-box button:hover {
+    background: #292929;
+}
+
+
+/* =========================
+   CELULAR
+========================= */
+
+@media (max-width: 600px) {
+
+    .menu-container {
+        padding: 30px 18px;
+    }
+
+    .menu-container h1 {
+        letter-spacing: 3px;
+    }
+
+    .top-bar {
+        left: 15px;
+        right: 15px;
+    }
+
+    .scoreboard {
+        left: 15px;
+        bottom: 15px;
+    }
+
+    #board {
+        width: min(85vw, 360px);
+    }
+
+    #turnText {
+        font-size: 16px;
+    }
+}

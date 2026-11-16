@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jogo da Velha</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         MENU PRINCIPAL
+    ========================== -->
+
+    <div id="menu" class="screen active">
+
+        <div class="menu-container">
+
+            <h1>JOGO DA VELHA</h1>
+
+            <div class="menu-buttons">
+
+                <button id="btnDoisJogadores">
+                    DOIS JOGADORES
+                </button>
+
+                <button id="btnCPU">
+                    CONTRA CPU
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         MENU DE DIFICULDADE
+    ========================== -->
+
+    <div id="difficultyMenu" class="screen">
+
+        <div class="menu-container">
+
+            <h1>CONTRA CPU</h1>
+
+            <div class="menu-buttons">
+
+                <button data-difficulty="easy">
+                    FÁCIL
+                </button>
+
+                <button data-difficulty="medium">
+                    MÉDIO
+                </button>
+
+                <button data-difficulty="hard">
+                    DIFÍCIL
+                </button>
+
+            </div>
+
+            <button class="back-button" id="btnVoltarDifficulty">
+                VOLTAR
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         JOGO
+    ========================== -->
+
+    <div id="game" class="screen">
+
+        <div class="top-bar">
+
+            <div id="gameMode">
+                DOIS JOGADORES
+            </div>
+
+            <button id="btnMenu">
+                MENU
+            </button>
+
+        </div>
+
+
+        <div class="game-container">
+
+            <h2 id="turnText">
+                VEZ DO JOGADOR X
+            </h2>
+
+            <div id="board">
+
+                <button class="cell" data-index="0"></button>
+                <button class="cell" data-index="1"></button>
+                <button class="cell" data-index="2"></button>
+
+                <button class="cell" data-index="3"></button>
+                <button class="cell" data-index="4"></button>
+                <button class="cell" data-index="5"></button>
+
+                <button class="cell" data-index="6"></button>
+                <button class="cell" data-index="7"></button>
+                <button class="cell" data-index="8"></button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             PLACAR
+        ========================== -->
+
+        <div class="scoreboard">
+
+            <div>
+                <span class="player-x">X</span>
+                <span id="scoreX">0</span>
+            </div>
+
+            <div>
+                <span class="player-o">O</span>
+                <span id="scoreO">0</span>
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             RESULTADO
+        ========================== -->
+
+        <div id="resultOverlay">
+
+            <div class="result-box">
+
+                <h2 id="resultText">
+                    JOGADOR X VENCEU!
+                </h2>
+
+                <button id="btnNextRound">
+                    PRÓXIMA RODADA
+                </button>
+
+                <button id="btnResultMenu">
+                    MENU PRINCIPAL
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
